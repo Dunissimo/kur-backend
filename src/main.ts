@@ -41,9 +41,7 @@ export default async function bootstrap() {
         origin: '*',
     });
 
-    await app.listen(process.env.PORT ?? 3000);
-
-    return app;
+    await app.init();
 }
 
 void bootstrap();

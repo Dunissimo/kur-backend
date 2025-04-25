@@ -19,29 +19,21 @@
 
 import { NestApplication, NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
+import { ExpressAdapter } from '@nestjs/platform-express';
+import * as express from 'express';
 
-// export let app: NestApplication;
+const server = express();
 
-// export default async function handler() {
-//     if (!app) {
-//         app = await NestFactory.create(AppModule);
-
-//         app.enableCors({
-//             origin: '*',
-//         });
-
-//         await app.init();
-//     }
-// }
-
-export default async function bootstrap() {
-    const app = await NestFactory.create(AppModule);
+export async function bootstrap() {
+    const app = await NestFactory.create(AppModule, new ExpressAdapter(server));
 
     app.enableCors({
         origin: '*',
     });
 
-    await app.listen(process.env.PORT ?? 3001);
+    await app.init();
 }
 
 void bootstrap();
+
+export default server;

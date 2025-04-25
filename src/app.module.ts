@@ -6,6 +6,7 @@ import { StageModule } from './stage/stage.module';
 import { WorkshopModule } from './workshop/workshop.module';
 import { ZakazModule } from './zakaz/zakaz.module';
 import { StatusModule } from './status/status.module';
+import { AppController } from './app.controller';
 
 @Module({
     imports: [
@@ -33,7 +34,7 @@ import { StatusModule } from './status/status.module';
         ZakazModule,
         StatusModule,
     ],
-    controllers: [],
+    controllers: [AppController],
     providers: [],
 })
 export class AppModule {}

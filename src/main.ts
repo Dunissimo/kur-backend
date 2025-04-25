@@ -1,26 +1,9 @@
-// import { NestFactory } from '@nestjs/core';
-// import { AppModule } from './app.module';
-
-// async function bootstrap() {
-//     const app = await NestFactory.create(AppModule);
-
-//     app.enableCors({
-//         origin: '*',
-//     });
-
-//     await app.listen(process.env.PORT ?? 3000);
-
-//     return app;
-// }
-
-// const app = bootstrap();
-
-// export default app;
-
-import { NestApplication, NestFactory } from '@nestjs/core';
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ExpressAdapter } from '@nestjs/platform-express';
-import * as express from 'express';
+import express from 'express';
 
 const server = express();
 

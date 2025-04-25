@@ -14,7 +14,11 @@ export async function bootstrap() {
         origin: '*',
     });
 
-    await app.init();
+    if (process.env.NODE_ENV !== 'production') {
+        await app.listen(3000); // или любой другой порт
+    } else {
+        await app.init();
+    }
 }
 
 void bootstrap();

@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ExpressAdapter } from '@nestjs/platform-express';
@@ -15,7 +13,7 @@ export async function bootstrap() {
     });
 
     if (process.env.NODE_ENV !== 'production') {
-        await app.listen(3000); // или любой другой порт
+        await app.listen(3000);
     } else {
         await app.init();
     }

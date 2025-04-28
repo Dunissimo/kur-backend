@@ -7,6 +7,7 @@ import { WorkshopModule } from './workshop/workshop.module';
 import { ZakazModule } from './zakaz/zakaz.module';
 import { StatusModule } from './status/status.module';
 import { AppController } from './app.controller';
+import { PodshipModule } from './podship/podship.module';
 
 @Module({
     imports: [
@@ -33,6 +34,7 @@ import { AppController } from './app.controller';
         WorkshopModule,
         ZakazModule,
         StatusModule,
+        PodshipModule,
     ],
     controllers: [AppController],
     providers: [],

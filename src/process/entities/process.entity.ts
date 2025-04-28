@@ -1,20 +1,34 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+    Column,
+    Entity,
+    JoinColumn,
+    ManyToOne,
+    PrimaryGeneratedColumn,
+} from 'typeorm';
+import { Status } from '../../status/entities/status.entity';
+import { Zakaz } from '../../zakaz/entities/zakaz.entity';
+import { Stage } from '../../stage/entities/stage.entity';
+import { Workshop } from '../../workshop/entities/workshop.entity';
 
 @Entity('Process')
 export class Process {
     @PrimaryGeneratedColumn()
     idProcess: number;
 
-    @Column({ type: 'int' })
+    @ManyToOne(() => Status, (status) => status.idStatus)
+    @JoinColumn({ name: 'StatusID' })
     StatusID: number;
 
-    @Column({ type: 'int' })
+    @ManyToOne(() => Zakaz, (zakaz) => zakaz.idZakaz)
+    @JoinColumn({ name: 'ZakazID' })
     ZakazID: number;
 
-    @Column({ type: 'int' })
+    @ManyToOne(() => Stage, (stage) => stage.idStages)
+    @JoinColumn({ name: 'StagesID' })
     StagesID: number;
 
-    @Column({ type: 'int' })
+    @ManyToOne(() => Workshop, (workshop) => workshop.idWorkshop)
+    @JoinColumn({ name: 'WorkShopID' })
     WorkShopID: number;
 
     @Column({ type: 'date' })

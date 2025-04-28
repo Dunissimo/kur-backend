@@ -19,7 +19,9 @@ export class ProcessService {
     }
 
     findAll() {
-        return this.processRepository.find();
+        return this.processRepository.find({
+            relations: ['StatusID', 'ZakazID', 'StagesID', 'WorkShopID'],
+        });
     }
 
     findOne(id: number) {

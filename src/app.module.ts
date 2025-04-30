@@ -1,33 +1,26 @@
 import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { ConfigModule, ConfigService } from '@nestjs/config';
 import { ProcessModule } from './process/process.module';
 import { StageModule } from './stage/stage.module';
 import { WorkshopModule } from './workshop/workshop.module';
 import { ZakazModule } from './zakaz/zakaz.module';
 import { StatusModule } from './status/status.module';
-import { AppController } from './app.controller';
 import { PodshipModule } from './podship/podship.module';
+import { AuthModule } from './auth/auth.module';
+import { UserModule } from './user/user.module';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
     imports: [
-        ConfigModule.forRoot({
-            isGlobal: true,
-            envFilePath: '.env',
-        }),
-        TypeOrmModule.forRootAsync({
-            imports: [ConfigModule],
-            useFactory: (configService: ConfigService) => ({
-                type: 'mysql',
-                host: configService.get('TYPEORM_HOST', 'localhost'),
-                port: configService.get('TYPEORM_PORT', 3306),
-                username: configService.get('TYPEORM_USERNAME'),
-                password: configService.get('TYPEORM_PASSWORD'),
-                database: configService.get('TYPEORM_DATABASE'),
-                entities: [__dirname + '/**/*.entity{.ts,.js}'],
-                synchronize: false,
-            }),
-            inject: [ConfigService],
+        TypeOrmModule.forRoot({
+            type: 'mysql',
+            host: 'cfif31.ru',
+            port: 3306,
+            username: 'ISPr25-22_SosnovskiySE',
+            password: 'ISPr25-22_SosnovskiySE',
+            database: 'ISPr25-22_SosnovskiySE_kursach',
+            entities: [__dirname + '/**/*.entity{.ts,.js}'],
+            synchronize: false,
+            logging: false,
         }),
         ProcessModule,
         StageModule,
@@ -35,8 +28,9 @@ import { PodshipModule } from './podship/podship.module';
         ZakazModule,
         StatusModule,
         PodshipModule,
+        UserModule,
+        AuthModule,
     ],
-    controllers: [AppController],
-    providers: [],
+    controllers: [],
 })
 export class AppModule {}

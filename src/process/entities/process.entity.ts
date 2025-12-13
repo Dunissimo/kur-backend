@@ -17,19 +17,19 @@ export class Process {
 
     @ManyToOne(() => Status, (status) => status.idStatus)
     @JoinColumn({ name: 'StatusID' })
-    StatusID: number;
+    Status: Status;
 
     @ManyToOne(() => Zakaz, (zakaz) => zakaz.idZakaz)
     @JoinColumn({ name: 'ZakazID' })
-    ZakazID: number;
+    Zakaz: Zakaz;
 
     @ManyToOne(() => Stage, (stage) => stage.idStages)
     @JoinColumn({ name: 'StagesID' })
-    StagesID: number;
+    Stages: Stage;
 
     @ManyToOne(() => Workshop, (workshop) => workshop.idWorkshop)
     @JoinColumn({ name: 'WorkShopID' })
-    WorkShopID: number;
+    WorkShop: Workshop;
 
     @Column({ type: 'date' })
     StartDate: Date;

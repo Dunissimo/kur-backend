@@ -1,7 +1,12 @@
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-import { IsString } from 'class-validator';
+import { IsInt, IsString } from 'class-validator';
 
 export class CreateStageDto {
     @IsString()
     NameStages: string;
+
+    @IsString()
+    DescriptionStages: string;
+
+    @IsInt()
+    WorkshopId: number;
 }

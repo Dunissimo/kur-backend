@@ -19,11 +19,16 @@ export class StageService {
     }
 
     findAll() {
-        return this.stageRepository.find();
+        return this.stageRepository.find({
+            relations: ['Workshop'],
+        });
     }
 
     findOne(id: number) {
-        return this.stageRepository.findOne({ where: { idStages: id } });
+        return this.stageRepository.findOne({
+            where: { idStages: id },
+            relations: ['Workshop'],
+        });
     }
 
     async update(id: number, updateStageDto: UpdateStageDto) {

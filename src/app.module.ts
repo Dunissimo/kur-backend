@@ -1,10 +1,11 @@
 import { Module } from '@nestjs/common';
 import { ProcessModule } from './process/process.module';
+import { DurationModule } from './duration/duration.module';
 import { StageModule } from './stage/stage.module';
 import { WorkshopModule } from './workshop/workshop.module';
 import { ZakazModule } from './zakaz/zakaz.module';
 import { StatusModule } from './status/status.module';
-import { PodshipModule } from './podship/podship.module';
+import { ProductModule } from './product/product.module';
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -23,11 +24,12 @@ import { TypeOrmModule } from '@nestjs/typeorm';
             logging: false,
         }),
         ProcessModule,
+        DurationModule,
         StageModule,
         WorkshopModule,
         ZakazModule,
         StatusModule,
-        PodshipModule,
+        ProductModule,
         UserModule,
         AuthModule,
     ],

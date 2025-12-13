@@ -1,16 +1,21 @@
-/* eslint-disable @typescript-eslint/no-unsafe-call */
 import { IsDate, IsInt, IsString } from 'class-validator';
 
 export class CreateZakazDto {
-    @IsDate()
-    Kogda: Date;
+    @IsInt()
+    productId: number;
 
     @IsInt()
-    Zakazcol: number;
+    ZakazQuantity: number;
 
     @IsString()
     For: string;
 
     @IsString()
     Comment: string;
+
+    @IsDate()
+    zakazCreated: Date;
+
+    @IsDate()
+    zakazCompleted: Date;
 }

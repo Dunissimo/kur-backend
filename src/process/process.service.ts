@@ -20,7 +20,7 @@ export class ProcessService {
 
     findAll() {
         return this.processRepository.find({
-            relations: ['StatusID', 'ZakazID', 'StagesID', 'WorkShopID'],
+            relations: ['Status', 'Zakaz', 'Stages', 'WorkShop'],
         });
     }
 

@@ -7,4 +7,10 @@ export class Workshop {
 
     @Column({ type: 'varchar' })
     NameWS: string;
+
+    @Column({ type: 'int' })
+    MaxLoadWS: number;
+
+    @Column({ type: 'int' })
+    CurrentLoadWS: number;
 }

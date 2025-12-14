@@ -13,7 +13,7 @@ export class Zakaz {
     @PrimaryGeneratedColumn()
     idZakaz: number;
 
-    @Column({ type: 'int' })
+    @Column({ type: 'int', select: false })
     productId: number;
 
     @ManyToOne(() => Product, (product) => product.idProduct)

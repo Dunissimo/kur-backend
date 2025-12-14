@@ -6,6 +6,7 @@ import { WorkshopModule } from './workshop/workshop.module';
 import { ZakazModule } from './zakaz/zakaz.module';
 import { StatusModule } from './status/status.module';
 import { ProductModule } from './product/product.module';
+import { ProductStageModule } from './productStage/product-stage.module';
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -30,6 +31,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
         ZakazModule,
         StatusModule,
         ProductModule,
+        ProductStageModule,
         UserModule,
         AuthModule,
     ],

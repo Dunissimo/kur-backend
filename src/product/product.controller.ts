@@ -30,6 +30,11 @@ export class ProductController {
         return this.productService.findOne(+id);
     }
 
+    @Get(':id/stages')
+    findOneWithStages(@Param('id') id: string) {
+        return this.productService.findOneWithStages(+id);
+    }
+
     @Patch(':id')
     update(
         @Param('id') id: string,

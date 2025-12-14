@@ -25,6 +25,22 @@ export class ProductService {
     findOne(id: number) {
         return this.productRepository.findOne({ where: { idProduct: id } });
     }
+    async findOneWithStages(id: number) {
+        return this.productRepository.findOne({
+            where: { idProduct: id },
+            relations: [
+                'productStages',
+                'productStages.stage',
+                'productStages.stage.Workshop',
+                'productStages.duration',
+            ],
+            order: {
+                productStages: {
+                    sort: 'ASC',
+                },
+            },
+        });
+    }
 
     async update(id: number, updateProductDto: UpdateProductDto) {
         await this.productRepository.update(id, updateProductDto);

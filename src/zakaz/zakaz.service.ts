@@ -19,11 +19,14 @@ export class ZakazService {
     }
 
     findAll() {
-        return this.zakazRepository.find();
+        return this.zakazRepository.find({ relations: ['product'] });
     }
 
     findOne(id: number) {
-        return this.zakazRepository.findOne({ where: { idZakaz: id } });
+        return this.zakazRepository.findOne({
+            where: { idZakaz: id },
+            relations: ['product'],
+        });
     }
 
     async update(id: number, updateZakazDto: UpdateZakazDto) {

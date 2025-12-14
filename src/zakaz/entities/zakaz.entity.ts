@@ -1,5 +1,6 @@
 import {
     Column,
+    CreateDateColumn,
     Entity,
     JoinColumn,
     ManyToOne,
@@ -12,12 +13,15 @@ export class Zakaz {
     @PrimaryGeneratedColumn()
     idZakaz: number;
 
+    @Column({ type: 'int' })
+    productId: number;
+
     @ManyToOne(() => Product, (product) => product.idProduct)
     @JoinColumn({ name: 'productId' })
     product: Product;
 
     @Column({ type: 'int' })
-    ZakazQuantity: number;
+    zakazQuantity: number;
 
     @Column({ type: 'varchar' })
     For: string;
@@ -25,9 +29,9 @@ export class Zakaz {
     @Column({ type: 'text', nullable: true })
     Comment: string;
 
-    @Column({ type: 'datetime' })
+    @CreateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
     zakazCreated: Date;
 
-    @Column({ type: 'datetime' })
+    @Column({ type: 'datetime', nullable: true })
     zakazCompleted: Date;
 }

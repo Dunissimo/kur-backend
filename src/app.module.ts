@@ -1,5 +1,4 @@
 import { Module } from '@nestjs/common';
-import { ProcessModule } from './process/process.module';
 import { DurationModule } from './duration/duration.module';
 import { StageModule } from './stage/stage.module';
 import { WorkshopModule } from './workshop/workshop.module';
@@ -24,7 +23,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
             synchronize: false,
             logging: false,
         }),
-        ProcessModule,
         DurationModule,
         StageModule,
         WorkshopModule,

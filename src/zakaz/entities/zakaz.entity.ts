@@ -7,6 +7,8 @@ import {
     PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Product } from '../../product/entities/product.entity';
+import { Stage } from '../../stage/entities/stage.entity';
+import { Status } from '../../status/entities/status.entity';
 
 @Entity('Zakaz')
 export class Zakaz {
@@ -21,10 +23,30 @@ export class Zakaz {
     product: Product;
 
     @Column({ type: 'int' })
+    stageId: number;
+
+    @ManyToOne(() => Stage, (stage) => stage.idStages)
+    @JoinColumn({ name: 'stageId' })
+    stage: Stage;
+
+    @Column({ type: 'int' })
+    statusId: number;
+
+    @ManyToOne(() => Status, (status) => status.idStatus)
+    @JoinColumn({ name: 'statusId' })
+    status: Status;
+
+    @Column({ type: 'int' })
     zakazQuantity: number;
 
     @Column({ type: 'varchar' })
     For: string;
+
+    @Column({ type: 'bool' })
+    isCancelled: boolean;
+
+    @Column({ type: 'bool' })
+    isFinished: boolean;
 
     @Column({ type: 'text', nullable: true })
     Comment: string;

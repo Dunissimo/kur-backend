@@ -12,10 +12,10 @@ export class ProductService {
         private readonly productRepository: Repository<Product>,
     ) {}
 
-    create(createProcessDto: CreateProductDto) {
-        const process = this.productRepository.create(createProcessDto);
+    create(createProductDto: CreateProductDto) {
+        const product = this.productRepository.create(createProductDto);
 
-        return this.productRepository.save(process);
+        return this.productRepository.save(product);
     }
 
     findAll() {

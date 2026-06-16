@@ -9,14 +9,6 @@ import { ProductStageModule } from './productStage/product-stage.module';
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Duration } from './duration/entities/duration.entity';
-import { Product } from './product/entities/product.entity';
-import { ProductStage } from './productStage/entity/productStage.entity';
-import { Stage } from './stage/entities/stage.entity';
-import { Status } from './status/entities/status.entity';
-import { User } from './user/entities/user.entity';
-import { Zakaz } from './zakaz/entities/zakaz.entity';
-import { Workshop } from './workshop/entities/workshop.entity';
 
 @Module({
     imports: [
@@ -27,7 +19,7 @@ import { Workshop } from './workshop/entities/workshop.entity';
             username: 'ISPr25-22_SosnovskiySE',
             password: 'ISPr25-22_SosnovskiySE',
             database: 'ISPr25-22_SosnovskiySE_kursach',
-            entities: [Duration, Product, ProductStage, Stage, Status, User, Zakaz, Workshop],
+            entities: [__dirname + '/**/*.entity{.ts,.js}'],
             synchronize: false,
             logging: false,
         }),

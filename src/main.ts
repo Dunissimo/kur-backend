@@ -15,13 +15,10 @@ export async function bootstrap() {
         allowedHeaders: ['Content-Type', 'Authorization'],
     };
 
-        app.enableCors(corsOptions);
+    app.enableCors(corsOptions);
 
-    if (process.env.NODE_ENV !== 'production') {
-        await app.listen(3000);
-    } else {
-        await app.init();
-    }
+    const port = process.env.PORT || 3000;
+    await app.listen(port);
 }
 
 void bootstrap();

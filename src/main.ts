@@ -9,13 +9,9 @@ const server = express();
 export async function bootstrap() {
     const app = await NestFactory.create(AppModule, new ExpressAdapter(server));
 
-    const corsOptions: CorsOptions = {
-        origin: '*',
-        methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
-        allowedHeaders: ['Content-Type', 'Authorization'],
-    };
-
-    app.enableCors(corsOptions);
+    app.enableCors({
+        origin: true
+    });
 
     const port = process.env.PORT || 3000;
     await app.listen(port);

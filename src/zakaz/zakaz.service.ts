@@ -23,8 +23,9 @@ export class ZakazService {
     ) {}
 
     create(createZakazDto: CreateZakazDto) {
+        const { productId, ...payload } = createZakazDto as any;
         const zakaz = this.zakazRepository.create({
-            ...createZakazDto,
+            ...payload,
             deadline: createZakazDto.deadline ? new Date(createZakazDto.deadline) : null,
         });
 
@@ -48,8 +49,9 @@ export class ZakazService {
     }
 
     async update(id: string, updateZakazDto: UpdateZakazDto) {
+        const { productId, ...rest } = updateZakazDto as any;
         const data = {
-            ...updateZakazDto,
+            ...rest,
             ...(updateZakazDto.deadline && { deadline: new Date(updateZakazDto.deadline) }),
         };
 

@@ -1,4 +1,4 @@
-import { IsInt, IsString } from 'class-validator';
+import { IsDateString, IsInt, IsOptional, IsString } from 'class-validator';
 
 export class CreateZakazDto {
     @IsInt()
@@ -12,4 +12,8 @@ export class CreateZakazDto {
 
     @IsString()
     Comment: string;
+
+    @IsOptional()
+    @IsDateString()
+    deadline?: string;
 }

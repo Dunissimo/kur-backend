@@ -6,10 +6,12 @@ import {
     Patch,
     Param,
     Delete,
+    UseGuards,
 } from '@nestjs/common';
 import { StatusService } from './status.service';
 import { CreateStatusDto } from './dto/create-status.dto';
 import { UpdateStatusDto } from './dto/update-status.dto';
+import { UserRole } from '../roles/roles.enum';
 
 @Controller('status')
 export class StatusController {
@@ -31,7 +33,10 @@ export class StatusController {
     }
 
     @Patch(':id')
-    update(@Param('id') id: string, @Body() updateStatusDto: UpdateStatusDto) {
+    update(
+        @Param('id') id: string,
+        @Body() updateStatusDto: UpdateStatusDto,
+    ) {
         return this.statusService.update(+id, updateStatusDto);
     }
 

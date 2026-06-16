@@ -7,4 +7,10 @@ export class Status {
 
     @Column({ type: 'varchar' })
     StatusName: string;
+
+    @Column({ type: 'varchar' })
+    StatusColor: string;
+
+    @Column({ type: 'varchar' })
+    StatusCode: string;
 }

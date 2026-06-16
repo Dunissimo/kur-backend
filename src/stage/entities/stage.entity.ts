@@ -27,6 +27,12 @@ export class Stage {
     @Column({ type: 'int' })
     WorkshopId: number;
 
+    @Column({ type: 'int' })
+    DurationStages: number;
+
+    @Column({ type: 'int' })
+    OrderStages: number;
+
     @OneToMany(() => ProductStage, (productStage) => productStage.stage)
     productStages: ProductStage[];
 }

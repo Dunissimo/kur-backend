@@ -9,4 +9,10 @@ export class CreateStageDto {
 
     @IsInt()
     WorkshopId: number;
+
+    @IsInt()
+    DurationStages: number;
+
+    @IsInt()
+    OrderStages: number;
 }

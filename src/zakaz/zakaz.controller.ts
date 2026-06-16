@@ -29,23 +29,23 @@ export class ZakazController {
 
     @Get(':id')
     findOne(@Param('id') id: string) {
-        return this.zakazService.findOne(+id);
+        return this.zakazService.findOne(id);
     }
 
     @Patch(':id')
     update(@Param('id') id: string, @Body() updateZakazDto: UpdateZakazDto) {
-        return this.zakazService.update(+id, updateZakazDto);
+        return this.zakazService.update(id, updateZakazDto);
     }
 
     @Delete(':id')
     remove(@Param('id') id: string) {
-        return this.zakazService.remove(+id);
+        return this.zakazService.remove(id);
     }
 
     @Put(':id/cancel')
     async cancel(@Param('id') id: string) {
-        const zakazId = Number(id);
-        if (isNaN(zakazId)) {
+        const zakazId = id;
+        if (!zakazId) {
             throw new BadRequestException('id должен быть числом');
         }
         return this.zakazService.cancelZakaz(zakazId);
@@ -53,8 +53,8 @@ export class ZakazController {
 
     @Put(':id/complete')
     async complete(@Param('id') id: string) {
-        const zakazId = Number(id);
-        if (isNaN(zakazId)) {
+        const zakazId = id;
+        if (!zakazId) {
             throw new BadRequestException('id должен быть числом');
         }
         return this.zakazService.completeZakaz(zakazId);
@@ -65,10 +65,10 @@ export class ZakazController {
         @Param('id') id: string,
         @Param('stageId') stageId: string,
     ) {
-        const zakazId = Number(id);
+        const zakazId = id;
         const newStageId = Number(stageId);
 
-        if (isNaN(zakazId) || isNaN(newStageId)) {
+        if (!zakazId || isNaN(newStageId)) {
             throw new BadRequestException('id и stageId должны быть числами');
         }
 
@@ -80,10 +80,10 @@ export class ZakazController {
         @Param('id') id: string,
         @Param('statusId') statusId: string,
     ) {
-        const zakazId = Number(id);
+        const zakazId = id;
         const newStatusId = Number(statusId);
 
-        if (isNaN(zakazId) || isNaN(newStatusId)) {
+        if (!zakazId || isNaN(newStatusId)) {
             throw new BadRequestException('id и statusId должны быть числами');
         }
 

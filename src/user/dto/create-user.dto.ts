@@ -1,18 +1,36 @@
-import { IsInt, IsString } from 'class-validator';
+import { IsInt, IsOptional, IsString, Min, Max, IsBoolean, IsEmail } from 'class-validator';
+import { UserRole } from '../../roles/roles.enum';
 
 export class CreateUserDto {
     @IsString()
-    Name: string;
+    Name!: string;
 
     @IsString()
-    Login: string;
+    Login!: string;
 
     @IsString()
-    Password: string;
+    Password!: string;
 
-    @IsInt()
-    WorkshopID: number;
+    @IsString()
+    Role: string;
+    
+    @IsBoolean()
+    @IsOptional()
+    active?: boolean;
 
+    @IsOptional()
+    @IsEmail()
+    email?: string;
+
+    @IsOptional()
+    @IsString()
+    phone?: string;
+
+    @IsOptional()
     @IsInt()
-    UserRole: number;
+    failedLoginAttempts?: number;
+
+    @IsOptional()
+    @IsBoolean()
+    isBlocked?: boolean;
 }

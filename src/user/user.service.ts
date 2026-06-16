@@ -5,6 +5,7 @@ import { Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { UserRole } from '../roles/roles.enum';
 
 @Injectable()
 export class UserService {
@@ -24,25 +25,39 @@ export class UserService {
     }
 
     async create(userData: CreateUserDto) {
-        const existingUser = await this.userRepository.findOne({
+        const existingByName = await this.userRepository.findOne({
             where: { Name: userData.Name },
         });
-
-        if (existingUser) {
+        if (existingByName) {
             throw new BadRequestException(
                 'Пользователь с таким именем уже существует',
             );
         }
 
+        const existingByLogin = await this.userRepository.findOne({
+            where: { Login: userData.Login },
+        });
+        if (existingByLogin) {
+            throw new BadRequestException(
+                'Пользователь с таким логином уже существует',
+            );
+        }
+
         const hashedPassword = await bcrypt.hash(userData.Password, 10);
 
-        return this.userRepository.save({
+        const saved = await this.userRepository.save({
             Name: userData.Name,
-            Password: hashedPassword,
-            UserRole: Number(userData.UserRole),
-            WorkshopID: Number(userData.WorkshopID),
             Login: userData.Login,
+            Password: hashedPassword,
+            Role: String(userData.Role ?? UserRole.MANAGER),
+            active: userData.active,
+            email: userData.email,
+            phone: userData.phone,
         });
+
+        // Возвращаем без пароля
+        const { Password, ...result } = saved;
+        return result;
     }
 
     async update(id: number, userData: UpdateUserDto) {
@@ -52,13 +67,15 @@ export class UserService {
             throw new BadRequestException('Пользователь не найден');
         }
 
+        const dataToSave: Partial<User> = { ...userData };
+
         if (userData.Password) {
-            userData.Password = await bcrypt.hash(userData.Password, 10);
+            dataToSave.Password = await bcrypt.hash(userData.Password, 10);
         }
 
         return this.userRepository.save({
             ...user,
-            ...userData,
+            ...dataToSave,
         });
     }
 
